@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/sr_color_primary" />
+    <Button
+        android:id="@+id/btn_switch"
+        android:layout_margin="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="切换主题"/>
+    <com.li.rr.widget.level.LevelView
+        android:id="@+id/lev_levelView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+    </com.li.rr.widget.level.LevelView>
+    <com.li.rr.widget.marquee.MarqueeView
+        android:id="@+id/mv_marqueeview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>

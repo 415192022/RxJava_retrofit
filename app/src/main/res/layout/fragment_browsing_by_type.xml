@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_main_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/file_browse_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1">
+
+            <ListView
+                android:id="@+id/file_path_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:footerDividersEnabled="true"
+                android:headerDividersEnabled="true"
+                android:visibility="gone" />
+
+            <ListView
+                android:id="@+id/favorite_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:footerDividersEnabled="true"
+                android:headerDividersEnabled="true"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/empty_view"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/empty_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="no_file"
+                    android:textColor="#e2e2e2"
+                    android:textSize="27px" />
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/dropdown_navigation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dropdown"
+                android:overScrollMode="never"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/dropdown_navigation_list"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"></LinearLayout>
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/sd_not_available_page"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25px"
+                    android:src="@drawable/sd_not_available" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="SD card is not available, please connect one"
+                    android:textSize="22px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/category_page"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/category_buttons"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    android:background="@color/light_white"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_music"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_music"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="音乐" />
+
+                                <TextView
+                                    android:id="@+id/tv_music_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_video"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_video"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="视频" />
+
+                                <TextView
+                                    android:id="@+id/tv_video_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_picture"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_pic"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="图片" />
+
+                                <TextView
+                                    android:id="@+id/tv_pic_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_xml"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_xml"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="XML文件" />
+
+                                <TextView
+                                    android:id="@+id/ctv_xml_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_doc"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_doc"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="文档" />
+
+                                <TextView
+                                    android:id="@+id/tv_doc_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_zip"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_zip"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="压缩文件" />
+
+                                <TextView
+                                    android:id="@+id/tv_zip_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dip"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_apk"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_apk"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="APK安装包" />
+
+                                <TextView
+                                    android:id="@+id/tv_apk_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_favorite"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_fov"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="收藏" />
+
+                                <TextView
+                                    android:id="@+id/tv_fov_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+
+                        <com.balysv.materialripple.MaterialRippleLayout
+                            android:id="@+id/category_pdf"
+                            style="@style/CategoryButtonStyle"
+                            app:mrl_rippleBackground="@color/white"
+                            app:mrl_rippleColor="@color/sr_color_primary"
+                            >
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <com.li.rr.widget.smoothcheckbox.SmoothCheckBox
+                                    android:id="@+id/scb_pdf"
+                                    app:color_tick="@color/transparent"
+                                    app:color_checked="@color/sr_color_primary"
+                                    app:color_unchecked="@color/sr_color_primary"
+                                    app:color_unchecked_stroke="@null"
+                                    android:layout_width="50dp"
+                                    android:layout_height="50dp"
+                                    android:layout_margin="10dp" />
+
+                                <TextView
+                                    style="@style/CategoryButtonTextStyle"
+                                    android:text="PDF文件" />
+
+                                <TextView
+                                    android:id="@+id/tv_pdf_count"
+                                    style="@style/CategoryButtonCountTextStyle" />
+                            </LinearLayout>
+                        </com.balysv.materialripple.MaterialRippleLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- category information -->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingTop="5dip">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dip"
+                        android:layout_marginLeft="20px"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/sd_card_capacity"
+                            style="@style/InformationTextStyle"
+                            android:drawableLeft="@drawable/sd_card_icon" />
+
+                        <TextView
+                            android:id="@+id/sd_card_available"
+                            style="@style/InformationTextStyle"
+                            android:layout_marginLeft="10dip"
+                            android:drawableLeft="@drawable/sd_card_available_icon" />
+                    </LinearLayout>
+
+                    <com.li.rr.widget.CategoryBar.CategoryBar
+                        android:id="@+id/category_bar"
+                        android:layout_width="fill_parent"
+                        android:layout_height="35px"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="5dip"></com.li.rr.widget.CategoryBar.CategoryBar>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dip"
+                            android:layout_marginLeft="20px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/category_legend_music"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_music" />
+
+                            <TextView
+                                android:id="@+id/category_legend_video"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_video" />
+
+                            <TextView
+                                android:id="@+id/category_legend_picture"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_picture" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dip"
+                            android:layout_marginLeft="20px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/category_legend_theme"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_theme" />
+
+                            <TextView
+                                android:id="@+id/category_legend_document"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_document" />
+
+                            <TextView
+                                android:id="@+id/category_legend_zip"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_zip" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dip"
+                            android:layout_marginLeft="20px"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/category_legend_apk"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_apk" />
+
+                            <TextView
+                                android:id="@+id/category_legend_other"
+                                style="@style/CategoryLegendStyle"
+                                android:drawableLeft="@drawable/legend_other" />
+
+                            <TextView style="@style/CategoryLegendStyle" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/moving_operation_bar"
+            style="@style/BottomButtonBar"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/button_moving_confirm"
+                style="@style/BottomButton.Left"
+                android:text="确定" />
+
+            <Button
+                android:id="@+id/button_moving_cancel"
+                style="@style/BottomButton.Right"
+                android:text="取消" />
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

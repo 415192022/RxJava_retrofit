@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RxJava+retrofit</string>
+    <string name="drawer_open">DrawerOpen</string>
+    <string name="drawer_close">DrawerClose</string>
+
+    <string name="splash_copyright">Copyright &#169; 2015 SimplifyReader All Rights Reserved\nPowered by Obsessive and Chris</string>
+</resources>
